@@ -13,6 +13,7 @@
 
 - Register User & Login
 - Create, Read, Update, Delete
+- Include One To Many
 - Session Logout
 - Upload Image
 
