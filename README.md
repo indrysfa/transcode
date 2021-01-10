@@ -16,6 +16,7 @@
 - Include One To Many
 - Session Logout
 - Upload Image
+- Include Admin LTE 3
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
