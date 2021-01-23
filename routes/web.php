@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::prefix('/admin')->middleware('auth')->group(function () {
+Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     });
@@ -39,4 +39,20 @@ Route::prefix('/admin')->middleware('auth')->group(function () {
 
     Route::get('/konten/cari','KontenController@searchKonten')->name('search.konten');
     
+});
+
+
+Route::prefix('/apj')->group(function () {
+    Route::get('/', 'ApjController@index')->name('data.apj');
+
+    Route::get('/form-apj', 'ApjController@showForm')->name('form.apj');
+    Route::post('/add-apj', 'ApjController@create')->name('add.apj');
+
+    Route::get('/detail-apj/{data}', 'ApjController@detail')->name('detail.apj');
+    Route::delete('/delete/{apj}', 'ApjController@destroy')->name('delete.apj');
+
+    Route::get('/edit-apj/{apj}/edit', 'ApjController@edit')->name('edit.apj');
+    Route::put('/edit-apj/{data}', 'ApjController@update')->name('update.apj');
+
+    Route::get('/apj/cari','ApjController@search')->name('search.apj');
 });
