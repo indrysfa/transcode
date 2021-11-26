@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "0888bfe5-ed07-4e4e-98f7-dd6aac3f1ae9",
+		"name": "transcode",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "biography",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "biography",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Chanyeol\",\r\n    \"age\": \"satu\",\r\n    \"group\": \"EXO\",\r\n    \"birth_place\": \"Seoul\",\r\n    \"birth_date\": \"1992-11-28\",\r\n    \"date_debut\": \"2011-11-01\",\r\n    \"agency\": \"SM Ent\"\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/biography",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"biography"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "biography",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Kang Daniel\",\r\n    \"age\": 24,\r\n    \"group\": \"Wanna One\",\r\n    \"birth_place\": \"Busan\",\r\n    \"birth_date\": \"1992-11-28\",\r\n    \"date_debut\": \"2011-11-01\",\r\n    \"agency\": \"M-net\"\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/biography/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"biography",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "biography id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/biography/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"biography",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "biography",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/biography/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"biography",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
