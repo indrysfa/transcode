@@ -48,7 +48,7 @@
                     <div class="row">
                         <div class="container">
                             <div class="card-body p-0">
-                                <table class="table table-striped">
+                                <table class="table table-bordered yajra-datatable">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -56,45 +56,12 @@
                                             <th>Title</th>
                                             <th>Jenis Konten</th>
                                             <th>Code</th>
-                                            {{-- <th>Image</th> --}}
+                                            <th>Image</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
-                                        <tr>
-                                            @foreach ($data as $d)
-                                        <tr>
-                                            <td>{{ $d->id }}</td>
-                                            <td>{{ $d->date }}</td>
-                                            <td>{{ $d->title }}</td>
-                                            <td>{{ $d->m_konten->jenis_konten }}</td>
-                                            <td>{{ $d->code }}</td>
-                                            {{-- <td><img src="{{ Storage::url('public/image/' . $d->image) }}" width="50px"
-                                                    height="50px" alt="error"></td> --}}
-                                            <td>
-                                                <div class="btn-group">
-                                                    <a href="{{ route('detail.konten', $d->id) }}"
-                                                        class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                                    <a href="{{ route('edit.konten', $d->id) }}"
-                                                        class="btn btn-warning"><i class="fas fa-pen"></i></a>
-                                                    <form action="{{ route('delete.konten', $d->id) }}" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-
-                                                        <button type="submit" class="btn btn-danger"><i
-                                                                class="fas fa-trash"></i></button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                        {{-- <tr>{{ $d->paginate(5) }}</tr> --}}
                                     </tbody>
-
-
-
-
                                 </table>
                             </div>
                         </div>
@@ -108,3 +75,98 @@
     </div>
     <!-- /.row -->
 @endsection
+@section('js.before')
+    <script src="{{ asset('datatables/jquery-1.10.2.min.js') }}"></script>
+    <script src="{{ asset('jquery.dataTables.min.js') }}"></script>
+@endsection
+@section('js.after')
+    <script>
+        $(function() {
+            $('.yajra-datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('getdata.konten') }}',
+                columns: [{
+                        data: 'date',
+                        name: 'date'
+                    },
+                    {
+                        data: 'title',
+                        name: 'title'
+                    },
+                    {
+                        data: 'jenis_konten_id',
+                        name: 'jenis_konten_id'
+                    },
+                    {
+                        data: 'code',
+                        name: 'code'
+                    },
+                    {
+                        data: 'detail',
+                        name: 'detail'
+                    },
+                    {
+                        data: 'image',
+                        name: 'image'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: true,
+                        searchable: true
+                    }
+                ]
+            });
+        });
+    </script>
+@endsection
+{{-- @section('js.after')
+    <!-- jQuery -->
+    <script src="{{ asset('datatables/jquery-1.10.2.min.js') }}"></script>
+    <!-- DataTables -->
+    <script src="{{ asset('jquery.dataTables.min.js') }}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('.yajra-datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{!! route('data1.konten') !!}",
+                columns: [{
+                        data: 'date',
+                        name: 'date'
+                    },
+                    {
+                        data: 'title',
+                        name: 'title'
+                    },
+                    {
+                        data: 'jenis_konten_id',
+                        name: 'jenis_konten_id'
+                    },
+                    {
+                        data: 'code',
+                        name: 'code'
+                    },
+                    {
+                        data: 'detail',
+                        name: 'detail'
+                    },
+                    {
+                        data: 'image',
+                        name: 'image'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: true,
+                        searchable: true
+                    },
+                ]
+            });
+
+        });
+    </script>
+@endsection --}}

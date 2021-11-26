@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  transcode:
+    image: transcode
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3030:3030

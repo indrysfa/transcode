@@ -1,5 +1,6 @@
 <?php
 
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,12 +22,22 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-Route::prefix('/admin')->group(function () {
+Route::prefix('/admin')->middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     });
-    Route::get('/konten', 'KontenController@index')->name('data.konten');
+    // Route::get('/konten', 'KontenController@getIndex')->name('data.konten');
+    Route::get('/konten', 'KontenController@getIndex')->name('data.konten');
+    Route::get('/konten-data', 'KontenController@anyData')->name('getdata.konten');
+    // Route::get('konten3', function(DataTables $dataTables) {
+    //     $model = App\Konten::query();
+
+    //     return $dataTables->eloquent($model)->toJson();
+    // })->name('json.konten');
+    // Route::controller('konten', 'KontenController', [
+    //     'anyData'  => 'datatables.data',
+    //     'getIndex' => 'datatables',
+    // ]);
 
     Route::get('/form-konten', 'KontenController@showForm')->name('form.konten');
     Route::post('/add-konten', 'KontenController@addKonten')->name('add.konten');
@@ -38,7 +49,9 @@ Route::prefix('/admin')->group(function () {
     Route::put('/edit-konten/{data}', 'KontenController@updateKonten')->name('update.konten');
 
     Route::get('/konten/cari','KontenController@searchKonten')->name('search.konten');
-    
+
+    Route::get('/role','RoleController@index')->name('role.view');
+
 });
 
 

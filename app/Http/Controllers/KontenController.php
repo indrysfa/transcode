@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jeniskonten;
 use App\Konten;
+use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +16,46 @@ class KontenController extends Controller
         $data = Konten::all();
         $konten = DB::table('kontens')->paginate(10);
         return view('admin.konten.index', compact('data', 'konten'));
-        
+    }
+
+    public function getIndex()
+    {
+        return view('admin.konten.index1');
+    }
+
+
+
+    public function anyData()
+    {
+        return Datatables::of(Konten::query())->make(true);
+    }
+
+    public function getKonten(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Konten::latest()->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+    }
+
+    public function index1(Request $request)
+    {
+        // if ($request->ajax()) {
+            // return datatables()->of(Konten::all())->toJson();
+            return Datatables::of(Konten::query())->make(true);
+        // }
+        // return view('admin.konten.index1');
+        // $konten = DB::table('kontens')->paginate(10);
+        // $konten = Konten::paginate(10);
+
+        // return view('admin.konten.index1', compact('konten'));
     }
 
     public function showForm()
@@ -124,7 +164,7 @@ class KontenController extends Controller
     {
         // menangkap data pencarian
 		$cari = $request->cari;
- 
+
         // mengambil data dari table pegawai sesuai pencarian data
         $konten = DB::table('kontens')
         ->where('title','like',"%".$cari."%")
